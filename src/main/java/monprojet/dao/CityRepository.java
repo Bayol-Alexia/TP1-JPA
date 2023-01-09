@@ -5,7 +5,7 @@ import monprojet.entity.City;
 
 public interface CityRepository extends JpaRepository<City, Integer> {
 
-    /**
+    /*
      * Trouve une ville par son nom.
      * Cette méthode sera automatiquement implémentée par Spring Data JPA.
      * @param cityName

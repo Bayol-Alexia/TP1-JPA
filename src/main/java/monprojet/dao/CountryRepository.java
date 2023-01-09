@@ -2,6 +2,7 @@ package monprojet.dao;
 
 import java.util.List;
 
+import monprojet.dto.PopulationPays;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,14 +14,14 @@ import monprojet.entity.Country;
 public interface CountryRepository extends JpaRepository<Country, Integer> {
 
     @Query(
-            values = "Select SUM(CITY.population)"
+            value = "Select SUM(CITY.population)"
                    + "From CITY"
                    + "Where CITY.country_id = :id",
             nativeQuery = true)
     public Integer populationPays(int id);
 
     @Query(
-            values = "Select COUNTRY.name as 'Pays', SUM(CITY.population) as 'Population'"
+            value = "Select COUNTRY.name as 'Pays', SUM(CITY.population) as 'Population'"
             +"From city"
             +"Inner join COUNTRY on CITY.country_id = :COUNTRY.id"
             +"Group by COUNTRY.name",

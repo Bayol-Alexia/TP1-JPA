@@ -15,16 +15,16 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
 
     @Query(
             value = "Select SUM(CITY.population)"
-                   + "From CITY"
-                   + "Where CITY.country_id = :id",
-            nativeQuery = true)
+                    + "From CITY "
+                    + "Where CITY.country_id = :id",
+                    nativeQuery = true)
     public Integer populationPays(int id);
 
     @Query(
-            value = "Select COUNTRY.name as 'Pays', SUM(CITY.population) as 'Population'"
-            +"From city"
-            +"Inner join COUNTRY on CITY.country_id = :COUNTRY.id"
-            +"Group by COUNTRY.name",
-            nativeQuery = true)
+            value = "Select COUNTRY.name as Pays, SUM(CITY.population) as Population "
+                    + "From CITY "
+                    + "Inner join COUNTRY on CITY.country_id = COUNTRY.id "
+                    + "Group by COUNTRY.name",
+                    nativeQuery = true)
     public List<PopulationPays> populationPays();
 }
